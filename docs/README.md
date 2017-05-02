@@ -2,7 +2,7 @@
 
 [Cassandra 官方](http://cassandra.apache.org/)比自己有一句很贴切的介绍：**Manage massive amounts of data, fast, without losing sleep**。
 
-- **经过实战检验**：包含：CERN、Comcast、eBay、Github、GoDaddy、Hulu、Instagram、Intuit、Netflix、Reddit、The Weather Channel、豌豆荚等国内外公司投入生产使用。
+- **经过实战检验**：包括CERN、Comcast、eBay、Github、GoDaddy、Hulu、Instagram、Intuit、Netflix、Reddit、The Weather Channel、豌豆荚等国内外公司投入生产使用。
 - **容错**：数据自动复制到多个节点，支持跨多个数据中心的复制。错误的节点可随时替换，不需要停机维护。
 - **高性能**：强大的性能和优秀的设计是基本设计。
 - **去中心化**：没有单点故障，没有网络瓶颈，集群中的每个节点都是等价的。
