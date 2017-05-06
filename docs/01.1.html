@@ -1,0 +1,473 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>安装 Cassandra 集群 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="01.2.html" />
+    
+    
+    <link rel="prev" href="01.0.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01.0.html">
+            
+                <a href="01.0.html">
+            
+                    
+                    Cassandra 简单集群
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.2.1" data-path="01.1.html">
+            
+                <a href="01.1.html">
+            
+                    
+                    安装 Cassandra 集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="01.2.html">
+            
+                <a href="01.2.html">
+            
+                    
+                    Cassandra 用户认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="01.z.html">
+            
+                <a href="01.z.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="02.0.html">
+            
+                <a href="02.0.html">
+            
+                    
+                    Cassandra 数据模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="03.0.html">
+            
+                <a href="03.0.html">
+            
+                    
+                    Cassandra 应用开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="03.1.html">
+            
+                <a href="03.1.html">
+            
+                    
+                    使用 Java
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="03.z.html">
+            
+                <a href="03.z.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >安装 Cassandra 集群</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="cassandra-&#x7B80;&#x5355;&#x96C6;&#x7FA4;">Cassandra &#x7B80;&#x5355;&#x96C6;&#x7FA4;</h1>
+<h2 id="&#x5B89;&#x88C5;&#x524D;&#x51C6;&#x5907;">&#x5B89;&#x88C5;&#x524D;&#x51C6;&#x5907;</h2>
+<p><strong>&#x4E0B;&#x8F7D; Cassandra</strong></p>
+<pre><code>wget -c http://archive.apache.org/dist/cassandra/3.9/apache-cassandra-3.9-bin.tar.gz   # &#x6216;&#x4F7F;&#x7528;&#x6700;&#x65B0;&#x7248;&#x672C;
+sudo mkdir -p /home/app/local/cassandra
+sudo chown -R $(whoami) /home/app/local
+cd /home/app/local
+tar zxf ~/apache-cassandra-3.9-bin.tar.gz
+mkdir -p /home/app/var/cassandra/data /home/app/var/cassandra/commitlog /home/app/var/cassandra/hints /home/app/var/cassandra/saved_caches /home/app/var/cassandra/cdc_raw
+</code></pre><p><strong>&#x63A8;&#x8350;&#x7684;&#x4EA7;&#x54C1;&#x5316;&#x8BBE;&#x7F6E;</strong></p>
+<ol>
+<li>&#x5B89;&#x88C5; Oracle Java 8 &#x6216; OpenJDK 8 </li>
+<li>&#x4F7F;&#x7528; NTP &#x540C;&#x6B65;&#x7F51;&#x7EDC;&#x65F6;&#x95F4;</li>
+<li>TCP &#x8BBE;&#x7F6E;&#xFF0C;&#x4FEE;&#x6539; <code>/etc/sysctl.conf</code> &#x6DFB;&#x52A0;&#x8BBE;&#x7F6E;&#xFF1A;<pre><code>net.core.rmem_max = 16777216
+net.core.wmem_max = 16777216
+net.core.rmem_default = 16777216
+net.core.wmem_default = 16777216
+net.core.optmem_max = 40960
+net.ipv4.tcp_rmem = 4096 87380 16777216
+net.ipv4.tcp_wmem = 4096 65536 16777216
+</code></pre></li>
+<li>NUMA&#x7CFB;&#x7EDF;&#x5173;&#x95ED; <code>zone_reclaim_mode</code> &#x6A21;&#x5F0F;<pre><code>$ echo 0 &gt; /proc/sys/vm/zone_reclaim_mode
+</code></pre></li>
+<li>&#x8BBE;&#x7F6E;&#x7528;&#x6237;&#x8D44;&#x6E90;&#x9650;&#x5236;&#x3002;&#x4FEE;&#x6539; <code>/etc/security/limits.conf</code> &#x6587;&#x4EF6;&#xFF0C;&#x6DFB;&#x52A0;&#x4EE5;&#x4E0B;&#x914D;&#x7F6E;&#xFF08;&#x5C06;<cassandra_user>&#x66FF;&#x6362;&#x6210;&#x5B9E;&#x73B0;&#x7528;&#x6237;&#x6216;&#x4F7F;&#x7528;<code>*</code>&#x53F7;&#x914D;&#x7F6E;&#x7ED9;&#x6240;&#x6709;&#x7528;&#x6237;&#xFF09;&#x3002;<pre><code>&lt;cassandra_user&gt; - memlock unlimited
+&lt;cassandra_user&gt; - nofile 100000
+&lt;cassandra_user&gt; - nproc 32768
+&lt;cassandra_user&gt; - as unlimited
+</code></pre></cassandra_user></li>
+<li>Debian&#x6216;Ubuntu&#x7CFB;&#x7EDF;&#x9700;&#x8981;&#x53D6;&#x6D88; <code>/etc/pam.d/su</code> &#x6587;&#x4EF6;&#x7684; <code>session    required   pam_limits.so</code> &#x6CE8;&#x91CA;</li>
+<li>&#x5173;&#x95ED;swap&#x3002;<pre><code>sudo swapoff --all
+</code></pre>&#x4E5F;&#x53EF;&#x4EE5;&#x5220;&#x9664;&#x6216;&#x6CE8;&#x91CA;&#x6389; <code>/etc/fstab</code> &#x6587;&#x4EF6;&#x91CC; swap &#x914D;&#x7F6E;&#x884C;</li>
+</ol>
+<p>&#x8BBE;&#x7F6E;&#x5B8C;&#x540E;&#x9700;&#x8981;&#x91CD;&#x542F;&#x7CFB;&#x7EDF;&#x4EE5;&#x4F7F;&#x5176;&#x751F;&#x6548;&#x3002;</p>
+<p>&#x66F4;&#x8BE6;&#x7EC6;&#x63A8;&#x8350;&#x8BBE;&#x7F6E;&#x8BF7;&#x89C1;&#xFF1A;<a href="http://docs.datastax.com/en/landing_page/doc/landing_page/recommendedSettings.html" target="_blank">http://docs.datastax.com/en/landing_page/doc/landing_page/recommendedSettings.html</a>&#x3002;</p>
+<h2 id="cassandra-&#x96C6;&#x7FA4;&#x642D;&#x5EFA;">Cassandra &#x96C6;&#x7FA4;&#x642D;&#x5EFA;</h2>
+<p>&#x4F7F;&#x7528;3&#x53F0;&#x4E3B;&#x673A;&#x6765;&#x642D;&#x5EFA; Cassandra &#x96C6;&#x7FA4;&#xFF0C;&#x4E3B;&#x673A;&#x540D;&#x548C;IP&#x5730;&#x5740;&#x5206;&#x522B;&#x662F; <code>cat /etc/hosts</code>&#xFF1A;</p>
+<pre><code>192.168.32.111  dn111
+192.168.32.112  dn121
+192.168.32.121  dn126
+</code></pre><p>&#x7F16;&#x8F91; <code>$CASSANDRA/conf/cassandra.conf</code>&#x6587;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x914D;&#x7F6E;&#x5E76;&#x4FEE;&#x6539;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;</p>
+<ol>
+<li><strong>cluster_name</strong>: &#x8BBE;&#x7F6E;&#x96C6;&#x7FA4;&#x540D;&#x5B57;&#xFF0C;&#x9650;&#x5236;&#x53EA;&#x80FD;&#x52A0;&#x5165;&#x76F8;&#x540C;&#x540D;&#x5B57;&#x7684;&#x96C6;&#x7FA4;</li>
+</ol>
+<pre><code>cluster_name: &quot;hl_test&quot;
+</code></pre><ol>
+<li><strong>hints_directory</strong>: </li>
+</ol>
+<pre><code>hints_directory: /home/app/var/cassandra/hints
+</code></pre><ol>
+<li><strong>authenticator&#x548C;authorizer</strong>: Cassandra&#x9ED8;&#x8BA4;&#x662F;&#x4E0D;&#x9700;&#x8981;&#x7528;&#x6237;&#x540D;/&#x5BC6;&#x7801;&#x767B;&#x5F55;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x5E76;&#x4E0D;&#x5B89;&#x5168;&#x3002;</li>
+</ol>
+<pre><code>authenticator: PasswordAuthenticator    # &#x7528;&#x6237;/&#x5BC6;&#x7801;&#x5C06;&#x4FDD;&#x5B58;&#x5728; system_auth.roles &#x8868; 
+authorizer: CassandraAuthorizer    # &#x7528;&#x6237;&#x6743;&#x9650;&#x5C06;&#x4FDD;&#x5B58;&#x5728; system_auth.role_permissions &#x8868;
+</code></pre><ol>
+<li><strong>data_file_directories</strong>: </li>
+</ol>
+<pre><code>data_file_directories:
+    - /home/app/var/cassandra/data
+</code></pre><ol>
+<li><strong>commitlog_directory</strong>: </li>
+</ol>
+<pre><code>commitlog_directory: /home/app/var/cassandra/commitlog
+</code></pre><ol>
+<li><strong>cdc_raw_directory</strong>: <em>&#x9ED8;&#x8BA4;&#x5E76;&#x672A;&#x542F;&#x7528; cdc &#x7279;&#x6027;</em>&#x3002;</li>
+</ol>
+<pre><code>cdc_raw_directory: /home/app/var/cassandra/cdc_raw
+</code></pre><ol>
+<li><strong>saved_caches_directory</strong>: </li>
+</ol>
+<pre><code>saved_caches_directory: /home/app/var/cassandra/saved_caches
+</code></pre><ol>
+<li><strong>seed_provider seeds</strong>: &#x8BBE;&#x7F6E;&#x96C6;&#x7FA4;&#x79CD;&#x5B50;&#x8282;&#x70B9;&#x5217;&#x8868;&#xFF0C;&#x8FD9;&#x91CC;&#x4E0D;&#x9700;&#x8981;&#x4E5F;&#x4E0D;&#x63A8;&#x8350;&#x5C06;&#x6240;&#x6709;&#x8282;&#x70B9;&#x90FD;&#x914D;&#x7F6E;&#x5165; <code>seeds</code> &#x4E2D;&#x3002;</li>
+</ol>
+<pre><code>seed_provider:
+    - class_name: org.apache.cassandra.locator.SimpleSeedProvider
+      parameters:
+          - seeds: &quot;dn111,dn126&quot;
+</code></pre><ol>
+<li><strong>listen_address</strong>: Cassandra &#x76D1;&#x542C;IP&#x5730;&#x5740;&#xFF0C;&#x8FD9;&#x91CC;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x9700;&#x914D;&#x7F6E;&#x8282;&#x70B9;&#x6240;&#x5728;&#x4E3B;&#x673A;&#x4F7F;&#x7528;&#x7684;&#x7F51;&#x5361;&#x63A5;&#x53E3;&#x5730;&#x5740;</li>
+</ol>
+<pre><code>listen_address: dn111
+</code></pre><ol>
+<li><strong>rpc_address</strong>: &#x8FD9;&#x91CC;&#x914D;&#x7F6E;&#x6210;&#x7A7A;&#xFF08;&#x5305;&#x62EC;&#x5192;&#x53F7;&#x540E;&#x9762;&#x7684;&#x7A7A;&#x683C;&#x90FD;&#x4E0D;&#x8981;&#xFF09;</li>
+</ol>
+<pre><code>rpc_address:
+</code></pre><p>&#x5C06;&#x4FEE;&#x6539;&#x597D;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;Cassandra&#x6253;&#x5305;&#x5E76;&#x4E0A;&#x4F20;&#x5230;&#x5176;&#x5B83;&#x8282;&#x70B9;&#xFF08;dn121&#xFF0C;dn126&#xFF09;&#x5B89;&#x88C5;&#xFF0C;&#x5728;&#x5176;&#x5B83;&#x8282;&#x70B9;&#x4FEE;&#x6539; <code>listen_address</code> &#x76D1;&#x542C;&#x670D;&#x52A1;IP&#x5730;&#x5740;&#x3002;&#x7136;&#x540E;&#x4F9D;&#x6B21;&#x6267;&#x884C;&#xFF1A;<code>$CASSANDRA/bin/cassandra</code> &#x547D;&#x4EE4;&#x542F;&#x52A8;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x914D;&#x7F6E;&#x5728;seeds&#x4E2D;&#x7684;&#x8282;&#x70B9;&#x81F3;&#x5C11;&#x4FDD;&#x8BC1;&#x4E00;&#x4E2A;&#x5904;&#x4E8E;&#x8FD0;&#x884C;&#x4E2D;&#xFF08;&#x5148;&#x542F;&#x52A8;&#xFF09;&#x3002;</p>
+<p>&#x770B;&#x5230;&#x7C7B;&#x4F3C;&#x5982;&#x4E0B;&#x8F93;&#x51FA;&#x5219;&#x4EE3;&#x8868;&#x96C6;&#x7FA4;&#x5DF2;&#x542F;&#x52A8;&#x6210;&#x529F;&#xFF1A;</p>
+<pre><code>INFO  05:57:02 Node /192.168.32.126 state jump to NORMAL
+INFO  05:57:02 Waiting for gossip to settle before accepting client requests...
+INFO  05:57:02 Handshaking version with /192.168.32.121
+INFO  05:57:02 Node /192.168.32.121 has restarted, now UP
+INFO  05:57:02 InetAddress /192.168.32.121 is now UP
+INFO  05:57:02 Node /192.168.32.121 state jump to NORMAL
+INFO  05:57:02 Updating topology for /192.168.32.121
+INFO  05:57:02 Updating topology for /192.168.32.121
+INFO  05:57:02 Node /192.168.32.111 has restarted, now UP
+INFO  05:57:02 InetAddress /192.168.32.111 is now UP
+INFO  05:57:02 Node /192.168.32.111 state jump to NORMAL
+INFO  05:57:02 Updating topology for /192.168.32.111
+INFO  05:57:02 Updating topology for /192.168.32.111
+INFO  05:57:02 Handshaking version with /192.168.32.111
+INFO  05:57:10 No gossip backlog; proceeding
+</code></pre><p>&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>bin/nodetool status</code> &#x6765;&#x67E5;&#x770B;&#x96C6;&#x7FA4;&#x72B6;&#x6001;&#xFF1A;</p>
+<pre><code>[devops@dn126 cassandra]$ ./bin/nodetool status
+Datacenter: datacenter1
+=======================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--  Address         Load       Tokens       Owns    Host ID                               Rack
+UN  192.168.32.121  570.89 MiB  256          ?       498be163-8843-4dec-af26-e9c7776106ca  rack1
+UN  192.168.32.126  584.77 MiB  256          ?       2d4ec509-00b6-4944-ba8f-1b65900db909  rack1
+UN  192.168.32.111  585.7 MiB  256          ?       893a15ee-7d8b-4805-b8c9-69d624ef15d6  rack1
+
+Note: Non-system keyspaces don&apos;t have the same replication settings, effective ownership information is meaningless
+</code></pre><h2 id="&#x4F7F;&#x7528;-cqlsh-&#x8BBF;&#x95EE;-cassandra">&#x4F7F;&#x7528; <code>cqlsh</code> &#x8BBF;&#x95EE; Cassandra</h2>
+<p>&#x76F4;&#x63A5;&#x8FD0;&#x884C; <code>bin/cqlsh</code> &#x547D;&#x4EE4;&#x4F1A;&#x770B;&#x5230;&#x5982;&#x4E0B;&#x9519;&#x8BEF;&#xFF1A;</p>
+<pre><code>$ ./bin/cqlsh dn121
+Connection error: (&apos;Unable to connect to any servers&apos;, {&apos;192.168.32.121&apos;: AuthenticationFailed(&apos;Remote end requires authentication.&apos;,)})
+</code></pre><p>&#x56E0;&#x4E3A;&#x5728;&#x4E4B;&#x524D;&#x7684;&#x914D;&#x7F6E;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86; <code>PasswordAuthenticator</code> &#x8BA4;&#x8BC1;&#x65B9;&#x5F0F;&#xFF0C;&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x7684;&#x8D85;&#x7EA7;&#x8D26;&#x53F7;&#x6765;&#x767B;&#x5F55;&#xFF1A;</p>
+<pre><code>$ ./bin/cqlsh -u cassandra -p cassandra dn121
+Connected to hl_test at dn111:9042.
+[cqlsh 5.0.1 | Cassandra 3.9.0 | CQL spec 3.4.2 | Native protocol v4]
+Use HELP for help.
+cassandra@cqlsh&gt;
+</code></pre><h2 id="&#x505C;&#x6B62;-cassandra-&#x96C6;&#x7FA4;">&#x505C;&#x6B62; Cassandra &#x96C6;&#x7FA4;</h2>
+<p>&#x5728;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#x4F9D;&#x6B21;&#x6267;&#x884C;&#x4E0B;&#x5217;&#x547D;&#x4EE4;</p>
+<pre><code>./bin/nodetool drain         # &#x5173;&#x95ED;&#x5199;&#x5165;&#xFF0C;&#x540C;&#x65F6;&#x628A;&#x6570;&#x636E;&#x5199;&#x5165;&#x6587;&#x4EF6;
+./bin/nodetool stopdaemon    # &#x505C;&#x6389;&#x672C;&#x8282;&#x70B9;
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="01.0.html" class="navigation navigation-prev " aria-label="Previous page: Cassandra 简单集群">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="01.2.html" class="navigation navigation-next " aria-label="Next page: Cassandra 用户认证">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"安装 Cassandra 集群","level":"1.2.1","depth":2,"next":{"title":"Cassandra 用户认证","level":"1.2.2","depth":2,"path":"01.2.md","ref":"01.2.md","articles":[]},"previous":{"title":"Cassandra 简单集群","level":"1.2","depth":1,"path":"01.0.md","ref":"01.0.md","articles":[{"title":"安装 Cassandra 集群","level":"1.2.1","depth":2,"path":"01.1.md","ref":"01.1.md","articles":[]},{"title":"Cassandra 用户认证","level":"1.2.2","depth":2,"path":"01.2.md","ref":"01.2.md","articles":[]},{"title":"小结","level":"1.2.3","depth":2,"path":"01.z.md","ref":"01.z.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"01.1.md","mtime":"2017-05-03T10:44:55.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-06T16:14:42.290Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

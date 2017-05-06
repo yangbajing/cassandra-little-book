@@ -1,0 +1,403 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Cassandra 用户认证 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="01.z.html" />
+    
+    
+    <link rel="prev" href="01.1.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01.0.html">
+            
+                <a href="01.0.html">
+            
+                    
+                    Cassandra 简单集群
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="01.1.html">
+            
+                <a href="01.1.html">
+            
+                    
+                    安装 Cassandra 集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.2" data-path="01.2.html">
+            
+                <a href="01.2.html">
+            
+                    
+                    Cassandra 用户认证
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="01.z.html">
+            
+                <a href="01.z.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="02.0.html">
+            
+                <a href="02.0.html">
+            
+                    
+                    Cassandra 数据模型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="03.0.html">
+            
+                <a href="03.0.html">
+            
+                    
+                    Cassandra 应用开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="03.1.html">
+            
+                <a href="03.1.html">
+            
+                    
+                    使用 Java
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="03.z.html">
+            
+                <a href="03.z.html">
+            
+                    
+                    小结
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Cassandra 用户认证</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="cassandra-&#x7528;&#x6237;&#x8BA4;&#x8BC1;">Cassandra &#x7528;&#x6237;&#x8BA4;&#x8BC1;</h1>
+<p>&#x5728;&#x4E0A;&#x4E00;&#x8282;<a href="01.1.html">&#x300A;&#x5B89;&#x88C5; Cassandra &#x96C6;&#x7FA4;&#x300B;</a>&#xFF0C;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86; <code>PasswordAuthenticator</code> &#x6765;&#x542F;&#x7528; Cassandra &#x7684;&#x5BC6;&#x7801;&#x8BA4;&#x8BC1;&#x529F;&#x80FD;&#x3002;&#x9ED8;&#x8BA4;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x662F; <code>cassandra/cassandra</code> &#x8FD9;&#x4E2A;&#x8D85;&#x7EA7;&#x7528;&#x6237;&#x767B;&#x5F55;&#xFF0C;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x5BC6;&#x7801;&#x662F;&#x5F88;&#x4E0D;&#x5B89;&#x5168;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>alter</code> &#x547D;&#x4EE4;&#x6765;&#x4FEE;&#x6539;&#x7528;&#x6237;&#x5BC6;&#x7801;&#x3002;</p>
+<pre><code>cassandra@cqlsh&gt; alter user cassandra with password &apos;yangbajing&apos;;
+</code></pre><p>&#x4F7F;&#x7528; <code>create user</code> &#x547D;&#x4EE4;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#xFF1A;</p>
+<pre><code>cassandra@cqlsh&gt; create user yangbajing with password &apos;yangbajing&apos;;
+</code></pre><p><code>list users</code> &#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x5217;&#x51FA;&#x5F53;&#x524D;&#x7CFB;&#x7EDF;&#x6240;&#x6709;&#x7528;&#x6237;&#xFF1A;</p>
+<pre><code>cassandra@cqlsh&gt; list users;
+
+ name       | super
+------------+-------
+  cassandra |  True
+ yangbajing | False
+
+(2 rows)
+</code></pre><h2 id="&#x4F7F;&#x7528;-cassandraauthorizer">&#x4F7F;&#x7528; CassandraAuthorizer</h2>
+<p>&#x5728;&#x4E4B;&#x524D;&#x7684;&#x914D;&#x7F6E;&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;&#x4E86;&#x57FA;&#x4E8E;<em>*&#x89D2;&#x8272;</em>&#x7684;&#x8BA4;&#x8BC1;&#x65B9;&#x5F0F;&#x3002;&#x5206;&#x522B;&#x4F7F;&#x7528; <code>cassandra</code> &#x548C; <code>yangbajing</code> &#x7528;&#x6237;&#x6267;&#x884C;&#x67E5;&#x8BE2;&#x770B;&#x770B;&#x533A;&#x522B;&#xFF1A;</p>
+<p><strong>cassandra &#x8D85;&#x7EA7;&#x7528;&#x6237;</strong></p>
+<pre><code>cassandra@cqlsh&gt; select * from system_auth.roles;
+
+ role       | can_login | is_superuser | member_of | salted_hash
+------------+-----------+--------------+-----------+--------------------------------------------------------------
+ yangbajing |      True |        False |      null | $2a$10$RFpNSeujA.2TNaMTx3rjFesp0FhMHE90et4Gx6dqpPrP4eCqEwrJe
+  cassandra |      True |         True |      null | $2a$10$AUbR2O7KwJI.6Y8HiANMQOo5ZNfLn4H8Yp/wb2u7GWK5ETu7c1R..
+
+(2 rows)
+</code></pre><p><strong>yangbajing &#x666E;&#x901A;&#x7528;&#x6237;</strong></p>
+<pre><code>yangbajing@cqlsh&gt; select * from system_auth.roles;
+Unauthorized: Error from server: code=2100 [Unauthorized] message=&quot;User yangbajing has no SELECT permission on &lt;table system_auth.roles&gt; or any of its parents&quot;
+</code></pre><p>&#x5BF9;&#x4E8E;&#x666E;&#x901A;&#x7528;&#x6237;&#xFF0C;&#x9ED8;&#x8BA4;&#x662F;&#x6CA1;&#x6709;&#x7CFB;&#x7EDF;&#x8868;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>grant</code> &#x547D;&#x4EE4;&#x5C06; <code>select</code> &#x6743;&#x9650;&#x8D4B;&#x7ED9;&#x7528;&#x6237;<strong>yangbajing</strong>&#xFF1A;</p>
+<pre><code>cassandra@cqlsh&gt; grant select on system_auth.roles to yangbajing;
+</code></pre><blockquote>
+<p>&#x5728; <code>cqlsh</code> &#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x547D;&#x4EE4; <strong>HELP GRANT</strong> &#x548C; <strong>HELP PERMISSIONS</strong> &#x6765;&#x83B7;&#x5F97;&#x66F4;&#x591A;&#x6743;&#x9650;&#x63A7;&#x5236;&#x65B9;&#x9762;&#x7684;&#x8BF4;&#x660E;&#x548C;&#x914D;&#x7F6E;&#x3002;</p>
+</blockquote>
+<h2 id="&#x6743;&#x9650;&#x63A7;&#x5236;">&#x6743;&#x9650;&#x63A7;&#x5236;</h2>
+<p>&#x5206;&#x914D;&#x6743;&#x9650;&#x8BED;&#x53E5;&#x683C;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>GRANT &lt;permission_name&gt; PERMISSION ON &lt;resource&gt; TO &lt;role_name&gt;;
+</code></pre><p>&#x5176;&#x4E2D; <strong><permission_name></permission_name></strong> &#x4E3A;&#x6743;&#x9650;&#x5217;&#x8868;&#xFF0C;&#x53EF;&#x9009;&#x62E9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>ALL</li>
+<li>ALTER</li>
+<li>AUTHORIZE</li>
+<li>CREATE</li>
+<li>DROP</li>
+<li>MODIFY</li>
+<li>SELECT</li>
+</ul>
+<p><strong><resource></resource></strong> &#x4E3A;&#x88AB;&#x5206;&#x914D;&#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;&#xFF1A;</p>
+<ul>
+<li>ALL KEYSPACES</li>
+<li>KEYSPACE <keyspace name=""></keyspace></li>
+<li>TABLE <keyspace_name.table_name></keyspace_name.table_name></li>
+</ul>
+<h2 id="&#x96C6;&#x7FA4;&#x5B89;&#x5168;">&#x96C6;&#x7FA4;&#x5B89;&#x5168;</h2>
+<p><code>system_auth</code> keyspace &#x7684;&#x9ED8;&#x8BA4;&#x590D;&#x5236;&#x56E0;&#x5B50;&#x4E3A;1&#xFF0C;&#x8FD9;&#x5728;&#x96C6;&#x7FA4;&#x4E2D;&#x662F;&#x975E;&#x5E38;&#x5371;&#x9669;&#x7684;&#x3002;&#x82E5;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x6302;&#x6389;&#xFF0C;&#x800C;&#x6B63;&#x597D;&#x8D26;&#x53F7;&#x76F8;&#x5173;&#x6570;&#x636E;&#x53EA;&#x4FDD;&#x5B58;&#x5728;&#x6302;&#x6389;&#x7684;&#x90A3;&#x4E00;&#x53F0;&#x4E0A;&#x4F1A;&#x9020;&#x6210;&#x767B;&#x5F55;&#x65F6;&#x4E0D;&#x80FD;&#x901A;&#x8FC7;&#x6388;&#x6743;&#x8BA4;&#x8BC1;&#x3002;&#x6700;&#x597D;&#x901A;&#x8FC7; <code>ALTER KEYSPACE</code> &#x547D;&#x4EE4;&#x4FEE;&#x6539;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;&#x3002;</p>
+<p><strong>SimpleStrategy&#xFF0C;&#x5355;&#x6570;&#x636E;&#x4E2D;&#x5FC3;&#x590D;&#x5236;&#x7B56;&#x7565;</strong></p>
+<pre><code>ALTER KEYSPACE &quot;system_auth&quot; WITH REPLICATION = { &apos;class&apos; : &apos;SimpleStrategy&apos;, &apos;replication_factor&apos; : 3 };
+</code></pre><p><strong>NetworkTopology&#xFF0C;&#x591A;&#x6570;&#x636E;&#x4E2D;&#x5FC3;&#x590D;&#x5236;&#x7B56;&#x7565;</strong></p>
+<pre><code>ALTER KEYSPACE &quot;system_auth&quot; WITH REPLICATION = {&apos;class&apos; : &apos;NetworkTopologyStrategy&apos;, &apos;dc1&apos; : 3, &apos;dc2&apos; : 2};
+</code></pre>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="01.1.html" class="navigation navigation-prev " aria-label="Previous page: 安装 Cassandra 集群">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="01.z.html" class="navigation navigation-next " aria-label="Next page: 小结">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Cassandra 用户认证","level":"1.2.2","depth":2,"next":{"title":"小结","level":"1.2.3","depth":2,"path":"01.z.md","ref":"01.z.md","articles":[]},"previous":{"title":"安装 Cassandra 集群","level":"1.2.1","depth":2,"path":"01.1.md","ref":"01.1.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"01.2.md","mtime":"2017-05-03T10:44:55.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-06T16:14:42.290Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

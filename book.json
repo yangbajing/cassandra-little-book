@@ -1,5 +1,5 @@
 {
-  "root": "./docs",
+  "root": "./src",
   "branch": "master",
   "title": "Cassandra 小书",
   "description": "Cassandra 小书 - 从入门到上手",
